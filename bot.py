@@ -267,7 +267,7 @@ async def members(ctx):
 async def clear(ctx, amount=5):
     try:
         await ctx.channel.purge(limit=amount + 1)
-    exept Exception as Error:
+    except Exception as Error:
         await ctx.send("No permission to delete user messages!")
 
 
