@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import json
+import os
 
 ncolor = 0xFFD700
 
