@@ -61,6 +61,36 @@ class FunCog(commands.Cog):
         embed.set_footer(text=f"{index}/{len(self.snipe[channel.id]) - 1}")
         await ctx.send(embed=embed)
 
+    @commands.command(name='reverse')
+    async def uno_reverse(self, ctx, member: discord.Member):
+
+        reverse_card = 'https://media.tenor.com/images/812b19ca9e2ab00039c215425011fc28/tenor.gif'
+        embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+        embed.set_author(name=f"{ctx.author.display_name} Has used reverse on {member.display_name}!")
+        embed.set_image(url=reverse_card)
+        if ctx.author.id == member.id:
+            await ctx.send(f'{ctx.author.mention} Tried to reverse themselves!! cringe.')
+        else:
+            await ctx.send(embed=embed)
+
+    @uno_reverse.error
+    async def reverse_handler(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            if error.param.name == 'member':
+                reverse_card = 'https://media.tenor.com/images/812b19ca9e2ab00039c215425011fc28/tenor.gif'
+            embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+            embed.set_author(name=f"{ctx.author.display_name} Has used reverse!")
+            embed.set_image(url=reverse_card)
+            await ctx.send(embed=embed)
+
+    @commands.command(name='nou')
+    async def uno_no_u(self, ctx):
+        reverse_card = 'https://media.tenor.com/images/2f3f6a77d4a356d8a742d6c7696f4334/tenor.gif'
+        embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+        embed.set_author(name=f"no u!")
+        embed.set_image(url=reverse_card)
+        await ctx.send(embed=embed)
+        
     @commands.command()
     async def mock(self, ctx, *, mocktxt: str = None):
         if mocktxt is None:
