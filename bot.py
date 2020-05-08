@@ -14,7 +14,7 @@ def get_prefix(client, message):
     except Exception as Error:
         return '%'
 
-bot = commands.Bot(command_prefix=get_prefix)
+bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
 
 bot.remove_command("help")
 
@@ -265,7 +265,11 @@ async def members(ctx):
 @bot.command()
 @commands.is_owner()
 async def clear(ctx, amount=5):
-    await ctx.channel.purge(limit=amount + 1)
+    try:
+        await ctx.channel.purge(limit=amount + 1)
+    exept Exception as Error:
+        await ctx.send("No permission to delete user messages!")
+
 
 
 @bot.command()
