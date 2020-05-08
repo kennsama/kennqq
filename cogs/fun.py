@@ -99,6 +99,49 @@ class FunCog(commands.Cog):
         mockedtxt = ''.join([i.lower() if random.randint(1, 100) < 51 else i.upper() for i in mocktxt])
         await ctx.send(content=mockedtxt, file=discord.File("mock.gif"))
 
+        
+    @commands.command()
+    async def pat(self, ctx, member: discord.Member):
+        responses = ['https://media1.tenor.com/images/da8f0e8dd1a7f7db5298bda9cc648a9a/tenor.gif',
+                     'https://media1.tenor.com/images/116fe7ede5b7976920fac3bf8067d42b/tenor.gif',
+                     'https://media.tenor.com/images/dc61bf036b96b9a321943493c55ad8a4/tenor.gif',
+                     'https://media1.tenor.com/images/1e92c03121c0bd6688d17eef8d275ea7/tenor.gif',
+                     'https://media1.tenor.com/images/5466adf348239fba04c838639525c28a/tenor.gif',
+                     'https://media1.tenor.com/images/282cc80907f0fe82d9ae1f55f1a87c03/tenor.gif']
+        embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+        embed.title = f"{ctx.author.display_name} pets " f"{member.display_name} uwu!"
+        embed.set_image(url=random.choice(responses))
+        if ctx.author.id == member.id:
+            await ctx.send(f'**{ctx.author.mention}** gave a pat to themselves :<')
+        else:
+            await ctx.send(embed=embed)
+
+    @pat.error
+    async def pat_handler(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            if error.param.name == 'member':
+                await ctx.send("not sure who to pat.")
+                
+                
+    @commands.command(name='banhammer')
+    async def banhammer(self, ctx):
+        ban_hammer = ['https://media2.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif',
+                      'https://media1.giphy.com/media/Vh2c84FAPVyvvjZJNM/giphy.gif',
+                      'https://media1.tenor.com/images/a97445946bd39cb5dbf1dc076c0ecf93/tenor.gif'
+                      ]
+        embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+        embed.set_author(name="Ban! Ban! Ban!")
+        embed.set_image(url=random.choice(ban_hammer))
+        await ctx.send(embed=embed)
+
+    @commands.command(name='notfunny')
+    async def not_funny(self, ctx):
+        not_funny = 'https://img.fireden.net/co/image/1572/42/1572424466161.gif'
+        embed = discord.Embed(colour=ncolor, timestamp=ctx.message.created_at)
+        embed.set_author(name="ha ha ha")
+        embed.set_image(url=not_funny)
+        await ctx.send(embed=embed)   
+        
     @commands.command()
     async def punch(self, ctx, member: discord.Member):
         responses = ['https://media1.tenor.com/images/31686440e805309d34e94219e4bedac1/tenor.gif?itemid=4790446',
