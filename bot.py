@@ -271,7 +271,7 @@ async def clear(ctx, amount=5):
 @bot.command()
 async def ping(ctx):
     embed = discord.Embed(colour=ncolor)
-    ping = (f'{round(bot.latency * 100)}ms.')
+    ping = (f'{round(bot.latency * 1000)}ms.')
     embed.set_author(name=f"{bot.user.display_name}", icon_url=bot.user.avatar_url)
     embed.set_thumbnail(url=bot.user.avatar_url)
     embed.add_field(name="**Bot Latency**", value=":signal_strength: " + ping)
