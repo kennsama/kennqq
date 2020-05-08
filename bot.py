@@ -13,6 +13,10 @@ bot.remove_command('help')
 players = {}
 
 
+@bot.event
+async def on_ready():
+    await bot.change_presence(status=discord.Status.idle, activity=discord.Game('Property of Code 002 and Code 016'))
+    print(f'{bot.user} has logged in.')
 
-
+    
 bot.run(os.environ['TOKEN'])
